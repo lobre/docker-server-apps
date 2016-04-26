@@ -11,7 +11,7 @@ services:
       - "10022:22"
     volumes:
       - "gogs:/data"
-    env_file: .app.env
+    env_file: app.env
     environment:
       - VIRTUAL_PORT=3000
     network_mode: "bridge"
@@ -19,7 +19,7 @@ services:
   db:
     image: mysql
     container_name: gogs-db
-    env_file: .db.env
+    env_file: db.env
     network_mode: "bridge"
 
 volumes:

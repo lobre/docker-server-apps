@@ -9,7 +9,7 @@ services:
     volumes:
       - "media:/data/files"
       - "/etc/localtime:/etc/localtime:ro"
-    env_file: .app.env
+    env_file: app.env
     environment:
       - PUID=1000
       - PGID=1000
@@ -20,7 +20,7 @@ services:
   db:
     image: mysql
     container_name: pydio-db
-    env_file: .db.env
+    env_file: db.env
     network_mode: "bridge"
 
 volumes:

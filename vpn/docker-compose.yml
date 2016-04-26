@@ -22,7 +22,7 @@ services:
     volumes:
       - "./run:/usr/local/sbin/run"
       - "./serveconfig:/usr/local/sbin/serveconfig"
-    env_file: .config.env
+    env_file: config.env
     environment:
       - VIRTUAL_PORT=8080
       - VIRTUAL_PROTO=https

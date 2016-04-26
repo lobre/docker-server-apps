@@ -10,7 +10,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "media:/downloads"
       - "media:/movies"
-    env_file: .app.env
+    env_file: app.env
     environment:
       - PUID=1000
       - PGID=1000

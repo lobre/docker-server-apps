@@ -9,7 +9,7 @@ services:
       - "58846:58846"
     volumes:
       - "media:/downloads"
-    env_file: .app.env
+    env_file: app.env
     environment:
       - PUID=1000
       - PGID=1000

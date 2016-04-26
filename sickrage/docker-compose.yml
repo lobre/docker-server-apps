@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  app:
+    image: linuxserver/sickrage
+    container_name: sickrage
+    ports:
+      - "8081:8081"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "media:/downloads"
+      - "media:/tv"
+    env_file: .app.env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VIRTUAL_PORT=8081
+    network_mode: "bridge"
+
+volumes:
+  media:
+    external: true

@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  app:
+    image: linuxserver/plex
+    container_name: plex
+    ports:
+      - "32400:32400"
+    volumes:
+      - "media:/data"
+    env_file: .app.env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=plexpass
+      - VIRTUAL_PORT=32400
+    network_mode: "bridge"
+
+volumes:
+  media:
+    external: true

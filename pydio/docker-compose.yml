@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  app:
+    image: linuxserver/pydio
+    container_name: pydio
+    links:
+      - db
+    volumes:
+      - "media:/data/files"
+      - "/etc/localtime:/etc/localtime:ro"
+    env_file: .app.env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VIRTUAL_PORT=443
+      - VIRTUAL_PROTO=https
+    network_mode: "bridge"
+
+  db:
+    image: mysql
+    container_name: pydio-db
+    env_file: .db.env
+    network_mode: "bridge"
+
+volumes:
+  media:
+    external: true

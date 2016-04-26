@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  app:
+    image: realms/realms-wiki
+    container_name: notes
+    volumes:
+      - "data:/tmp"
+    env_file: .app.env
+    environment:
+      - VIRTUAL_PORT=5000
+    network_mode: "bridge"
+
+volumes:
+  data:
+    driver: local

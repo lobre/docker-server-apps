@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  app:
+    image: linuxserver/couchpotato
+    container_name: couchpotato
+    ports:
+      - "5050:5050"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "media:/downloads"
+      - "media:/movies"
+    env_file: .app.env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VIRTUAL_PORT=5050
+    network_mode: "bridge"
+
+volumes:
+  media:
+    external: true

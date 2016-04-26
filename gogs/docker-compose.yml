@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  app:
+    image: gogs/gogs
+    container_name: gogs
+    links:
+      - db
+    ports:
+      - "3000:3000"
+      - "10022:22"
+    volumes:
+      - "gogs:/data"
+    env_file: .app.env
+    environment:
+      - VIRTUAL_PORT=3000
+    network_mode: "bridge"
+
+  db:
+    image: mysql
+    container_name: gogs-db
+    env_file: .db.env
+    network_mode: "bridge"
+
+volumes:
+  gogs:
+    driver: local

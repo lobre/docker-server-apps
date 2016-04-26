@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  app:
+    image: mcreations/ftp
+    container_name: ftp
+    volumes:
+      - "media:/data/admin"
+    ports:
+      - "21:21"
+      - "65000-65004:65000-65004"
+    env_file: .app.env
+    environment:
+      - PASV_MIN_PORT=65000
+      - PASV_MAX_PORT=65004
+    network_mode: "bridge"
+
+volumes:
+  media:
+    external: true

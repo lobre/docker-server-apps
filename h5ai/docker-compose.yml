@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  app:
+    image: clue/h5ai
+    container_name: browser
+    volumes:
+      - "media:/var/www"
+    env_file: .app.env
+    network_mode: "bridge"
+
+volumes:
+  media:
+    external: true

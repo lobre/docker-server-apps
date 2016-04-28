@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  app:
+    image: mattermost/platform
+    container_name: mattermost
+    env_file: app.env
+    network_mode: "bridge"

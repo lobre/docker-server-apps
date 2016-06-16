@@ -1,6 +1,3 @@
-# Before starting this project
+# Notice
 
-On the host create a link to avoid volume mapping problem when managing projects from within compose-ui.
-
-    sudo mkdir /opt
-    sudo ln -s <apps_folder> /opt/docker-compose-projects
+One the container will create a link on the host to avoid volume mapping problem when managing projects from within compose-ui.

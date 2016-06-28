@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  app:
+    image: sapk/cloud9
+    container_name: cloud9
+    volumes:
+      - "..:/workspace"
+    network_mode: "bridge"

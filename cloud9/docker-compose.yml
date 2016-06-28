@@ -6,4 +6,5 @@ services:
     container_name: cloud9
     volumes:
       - "..:/workspace"
+    env_file: app.env
     network_mode: "bridge"

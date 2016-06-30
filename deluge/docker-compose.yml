@@ -13,8 +13,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - VIRTUAL_PORT=8112
-    network_mode: "bridge"
 
 volumes:
   media:

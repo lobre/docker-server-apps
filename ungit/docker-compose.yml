@@ -10,6 +10,4 @@ services:
       - "${HOME}/.ssh/known_hosts:/root/.ssh/known_hosts"
     env_file: app.env
     environment:
-      - VIRTUAL_PORT=8448
       - SSH_AUTH_SOCK=/ssh-agent
-    network_mode: "bridge"

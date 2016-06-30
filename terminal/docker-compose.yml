@@ -6,6 +6,4 @@ services:
     container_name: terminal
     env_file: app.env
     environment:
-      - VIRTUAL_PROTO=https
       - SIAB_SUDO=true
-    network_mode: "bridge"

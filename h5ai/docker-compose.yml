@@ -7,7 +7,6 @@ services:
     volumes:
       - "media:/var/www"
     env_file: app.env
-    network_mode: "bridge"
 
 volumes:
   media:

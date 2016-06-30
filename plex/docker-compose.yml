@@ -13,8 +13,6 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=plexpass
-      - VIRTUAL_PORT=32400
-    network_mode: "bridge"
 
 volumes:
   media:

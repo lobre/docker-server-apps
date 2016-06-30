@@ -13,7 +13,6 @@ services:
     environment:
       - PASV_MIN_PORT=65000
       - PASV_MAX_PORT=65004
-    network_mode: "bridge"
 
 volumes:
   media:

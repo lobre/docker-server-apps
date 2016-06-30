@@ -13,15 +13,11 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - VIRTUAL_PORT=443
-      - VIRTUAL_PROTO=https
-    network_mode: "bridge"
 
   db:
     image: mysql
     container_name: pydio-db
     env_file: db.env
-    network_mode: "bridge"
 
 volumes:
   media:

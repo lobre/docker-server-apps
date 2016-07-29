@@ -2,16 +2,16 @@ version: '2'
 
 services:
   app:
-    image: francescou/docker-compose-ui
-    container_name: compose-ui
+    image: "francescou/docker-compose-ui"
+    container_name: "compose-ui"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "..:/opt/docker-compose-projects"
-    env_file: app.env
+    env_file: "app.env"
 
   link:
-    image: alpine
+    image: "alpine"
     command: ash -c "ln -s `dirname $PWD` /opt/docker-compose-projects"
-    container_name: compose-ui-link
+    container_name: "compose-ui-link"
     volumes:
       - "/opt/:/opt/"

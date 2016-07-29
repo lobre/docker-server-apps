@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  app:
+    image: "scazadar/pokemap"
+    container_name: "pokemap"
+    command: "-L fr -st 10 -P 80"
+    volumes:
+      - "./config.ini:/PokemonGo-Map/config/config.ini"
+    env_file: "app.env"
+

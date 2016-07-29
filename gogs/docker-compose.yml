@@ -2,22 +2,22 @@ version: '2'
 
 services:
   app:
-    image: gogs/gogs
-    container_name: gogs
+    image: "gogs/gogs"
+    container_name: "gogs"
     links:
-      - db
+      - "db"
     ports:
       - "3000:3000"
       - "10022:22"
     volumes:
       - "gogs:/data"
-    env_file: app.env
+    env_file: "app.env"
 
   db:
-    image: mysql
-    container_name: gogs-db
-    env_file: db.env
+    image: "mysql"
+    container_name: "gogs-db"
+    env_file: "db.env"
 
 volumes:
   gogs:
-    driver: local
+    driver: "local"

@@ -1,0 +1,10 @@
+# Authentication settings
+auth-service: google
+username: myuser@gmail.com
+password: mypassword
+
+# Search settings
+location: MyCity,MyCountry
+
+# Misc
+gmaps-key: mygoogleapikey

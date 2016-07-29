@@ -2,9 +2,8 @@ version: '2'
 
 services:
   app:
-    image: kdelfour/cloud9-docker
-    container_name: cloud9
+    image: "kdelfour/cloud9-docker"
+    container_name: "cloud9"
     volumes:
       - "..:/workspace/"
-    env_file: app.env
-    network_mode: "bridge"
+    env_file: "app.env"

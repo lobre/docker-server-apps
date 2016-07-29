@@ -2,17 +2,17 @@ version: '2'
 
 services:
   app:
-    image: linuxserver/deluge
-    container_name: deluge
+    image: "linuxserver/deluge"
+    container_name: "deluge"
     ports:
       - "8112:8112"
       - "58846:58846"
     volumes:
       - "media:/downloads"
-    env_file: app.env
+    env_file: "app.env"
     environment:
-      - PUID=1000
-      - PGID=1000
+      - "PUID=1000"
+      - "PGID=1000"
 
 volumes:
   media:

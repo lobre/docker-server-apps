@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  app:
+    image: "kdelfour/lychee-docker"
+    container_name: "lychee"
+    volumes:
+      - "uploads:/uploads"
+    env_file: "app.env"
+
+volumes:
+  uploads:
+    driver: "local"

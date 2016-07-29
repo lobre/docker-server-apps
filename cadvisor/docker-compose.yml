@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  app:
+    image: "google/cadvisor"
+    container_name: "cadvisor"
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:rw"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+    env_file: "app.env"

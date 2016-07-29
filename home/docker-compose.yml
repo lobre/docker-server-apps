@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  nginx:
+    image: "nginx"
+    container_name: "home"
+    volumes:
+      - "web:/usr/share/nginx/html"
+    env_file: "nginx.env"
+
+  gen:
+    image: "jwilder/docker-gen"
+    container_name: "home-gen"
+    command: "-watch -only-exposed /etc/docker-gen/templates/template.html /web/index.html"
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "./template.html:/etc/docker-gen/templates/template.html"
+      - "web:/web"
+
+volumes:
+  web:
+    driver: "local"

@@ -8,12 +8,15 @@ services:
       - "32400:32400"
     volumes:
       - "media:/data"
+      - "config:/config"
     env_file: "app.env"
     environment:
       - "PUID=1000"
       - "PGID=1000"
-      - "VERSION=plexpass"
+      - "VERSION=latest"
 
 volumes:
   media:
     external: true
+  config:
+    driver: "local"

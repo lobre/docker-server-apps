@@ -2,8 +2,8 @@ version: '2'
 
 services:
   app:
-    image: sspreitzer/shellinabox
-    container_name: terminal
-    env_file: app.env
+    image: "sspreitzer/shellinabox"
+    container_name: "terminal"
+    env_file: "app.env"
     environment:
-      - SIAB_SUDO=true
+      - "SIAB_SUDO=true"

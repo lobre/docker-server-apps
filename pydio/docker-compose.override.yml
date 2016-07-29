@@ -3,14 +3,14 @@ version: '2'
 services:
   app:
     logging:
-      driver: gelf
+      driver: "gelf"
       options:
         gelf-address: "udp://0.0.0.0:12201"
     network_mode: "bridge"
 
   db:
     logging:
-      driver: gelf
+      driver: "gelf"
       options:
         gelf-address: "udp://0.0.0.0:12201"
     network_mode: "bridge"

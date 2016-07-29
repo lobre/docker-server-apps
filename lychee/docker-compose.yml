@@ -6,8 +6,14 @@ services:
     container_name: "lychee"
     volumes:
       - "uploads:/uploads"
+      - "data:/data"
+      - "mysql:/mysql"
     env_file: "app.env"
 
 volumes:
   uploads:
+    driver: "local"
+  data:
+    driver: "local"
+  mysql:
     driver: "local"

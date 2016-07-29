@@ -2,13 +2,13 @@ version: '2'
 
 services:
   app:
-    image: mybuilds/ungit
-    container_name: ungit
+    image: "mybuilds/ungit"
+    container_name: "ungit"
     volumes:
       - "..:/repo"
       - "${SSH_AUTH_SOCK}:/ssh-agent"
       - "${HOME}/.ssh/known_hosts:/home/developer/.ssh/known_hosts"
       - "${HOME}/.gitconfig:/home/developer/.gitconfig"
-    env_file: app.env
+    env_file: "app.env"
     environment:
-      - SSH_AUTH_SOCK=/ssh-agent
+      - "SSH_AUTH_SOCK=/ssh-agent"

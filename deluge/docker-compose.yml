@@ -9,6 +9,7 @@ services:
       - "58846:58846"
     volumes:
       - "media:/downloads"
+      - "config:/config"
     env_file: "app.env"
     environment:
       - "PUID=1000"
@@ -17,3 +18,5 @@ services:
 volumes:
   media:
     external: true
+  config:
+    driver: "local"

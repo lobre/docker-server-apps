@@ -2,8 +2,8 @@ version: '2'
 
 services:
   server:
-    image: jpetazzo/dockvpn
-    container_name: vpn
+    image: "jpetazzo/dockvpn"
+    container_name: "vpn"
     privileged: true
     volumes:
       - "./run:/usr/local/sbin/run"
@@ -13,12 +13,12 @@ services:
       - "8080:443/tcp"
 
   config:
-    image: jpetazzo/dockvpn
-    container_name: vpn-config
+    image: "jpetazzo/dockvpn"
+    container_name: "vpn-config"
     command: "serveconfig"
     volumes_from:
-      - server
+      - "server"
     volumes:
       - "./run:/usr/local/sbin/run"
       - "./serveconfig:/usr/local/sbin/serveconfig"
-    env_file: config.env
+    env_file: "config.env"

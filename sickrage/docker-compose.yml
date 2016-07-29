@@ -2,19 +2,22 @@ version: '2'
 
 services:
   app:
-    image: linuxserver/sickrage
-    container_name: sickrage
+    image: "linuxserver/sickrage"
+    container_name: "sickrage"
     ports:
       - "8081:8081"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "media:/downloads"
       - "media:/tv"
+      - "config:/config"
     env_file: app.env
     environment:
-      - PUID=1000
-      - PGID=1000
+      - "PUID=1000"
+      - "PGID=1000"
 
 volumes:
   media:
     external: true
+  config:
+    driver: "local"

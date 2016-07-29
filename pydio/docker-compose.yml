@@ -2,23 +2,26 @@ version: '2'
 
 services:
   app:
-    image: linuxserver/pydio
-    container_name: pydio
+    image: "linuxserver/pydio"
+    container_name: "pydio"
     links:
-      - db
+      - "db"
     volumes:
       - "media:/data/files"
       - "/etc/localtime:/etc/localtime:ro"
-    env_file: app.env
+      - "config:/config"
+    env_file: "app.env"
     environment:
-      - PUID=1000
-      - PGID=1000
+      - "PUID=1000"
+      - "PGID=1000"
 
   db:
-    image: mysql
-    container_name: pydio-db
-    env_file: db.env
+    image: "mysql"
+    container_name: "pydio-db"
+    env_file: "db.env"
 
 volumes:
   media:
     external: true
+  config:
+    driver: "local"

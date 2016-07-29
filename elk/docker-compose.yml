@@ -24,7 +24,7 @@ services:
     container_name: "kibana"
     links:
       - "elasticsearch:elasticsearch"
-    env_file: "kibana.env"
+    env_file: "kibana.env"
 
 volumes:
   logs:

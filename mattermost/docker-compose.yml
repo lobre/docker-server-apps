@@ -2,6 +2,6 @@ version: '2'
 
 services:
   app:
-    image: "mattermost/platform"
+    image: "mattermost/mattermost-preview"
     container_name: "mattermost"
     env_file: "app.env"

@@ -2,7 +2,7 @@ version: '2'
 
 services:
   app:
-    image: "sych74/pokemongo-map"
+    image: "sych74/pokemongo-map:develop"
     container_name: "pokemap"
     command: "-L fr -st 4 -H 0.0.0.0 -P 80"
     volumes:

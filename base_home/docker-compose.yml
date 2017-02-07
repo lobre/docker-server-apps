@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx
+    container_name: home
+    volumes:
+      - web:/usr/share/nginx/html
+    labels:
+      - traefik.enable=true
+      - traefik.port=80
+      - traefik.frontend.rule=Host:${traefik_url}
+      - traefik.home=false
+
+  gen:
+    image: jwilder/docker-gen
+    container_name: home-gen
+    command: -watch -only-exposed /etc/docker-gen/templates/template.html /web/index.html
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./template.html:/etc/docker-gen/templates/template.html
+      - web:/web
+
+volumes:
+  web:
+    driver: local

@@ -68,20 +68,17 @@
     </nav>
 
     <div class="container">
-
-        {{ $default_host := first (keys (groupBy $ "Env.DEFAULT_HOST")) }} 
         
-        {{ range $host, $containers := groupBy $ "Env.VIRTUAL_HOST" }}
-            {{ if or (not $default_host) (and $default_host (eq (closest (split $host ",") $default_host) "")) }}
-                {{ $host := first (split $host ",") }}
-                {{ range $container := $containers }}
-                    <div class="col-lg-2 col-md-2 col-xs-4">
-                        <div class="item" onclick="window.open('http://{{ $host }}')">
-                            <img data-name="{{ $container.Name }}" class="profile"/>
-                            <a class="link" href="http://{{ $host }}" target="_blank">{{ $container.Name }}</a>
-                        </div>
+        {{ $ := whereLabelValueMatches $ "traefik.home" "true" }}
+        {{ range $host, $containers := groupByLabel $ "traefik.frontend.rule" }}
+            {{ $host := replace (first (split $host ",")) "Host:" "" 1 }}
+            {{ range $container := $containers }}
+                <div class="col-lg-2 col-md-2 col-xs-4">
+                    <div class="item" onclick="window.open('http://{{ $host }}')">
+                        <img data-name="{{ $container.Name }}" class="profile"/>
+                        <a class="link" href="http://{{ $host }}" target="_blank">{{ $container.Name }}</a>
                     </div>
-                {{ end }}
+                </div>
             {{ end }}
         {{ end }}
         

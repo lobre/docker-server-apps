@@ -1,18 +1,12 @@
-version: '2'
+version: '3'
 
 services:
   app:
-    image: "francescou/docker-compose-ui"
-    container_name: "compose-ui"
+    image: francescou/docker-compose-ui
+    container_name: compose-ui
+    working_dir: "$PWD/.." 
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "..:/opt/docker-compose-projects"
+      - /var/run/docker.sock:/var/run/docker.sock
+      - "$PWD/..:/$PWD/.."
     ports:
-      - "8082:5000"
-
-  link:
-    image: "alpine"
-    command: ash -c "ln -s `dirname $PWD` /opt/docker-compose-projects"
-    container_name: "compose-ui-link"
-    volumes:
-      - "/opt/:/opt/"
+      - 8082:5000

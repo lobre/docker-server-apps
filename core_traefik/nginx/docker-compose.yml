@@ -10,3 +10,5 @@ services:
       - traefik.frontend.rule=Host:nginx.docker.localhost
       - traefik.frontend.entryPoints=http
       - traefik.home=true
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html

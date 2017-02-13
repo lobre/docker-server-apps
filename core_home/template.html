@@ -73,10 +73,11 @@
         {{ range $host, $containers := groupByLabel $ "traefik.frontend.rule" }}
             {{ $host := replace (first (split $host ",")) "Host:" "" 1 }}
             {{ range $container := $containers }}
+                {{ $protocol := when (contains $container.Labels "traefik.frontend.entryPoints") (first (split (index $container.Labels "traefik.frontend.entryPoints") ",")) "http" }}
                 <div class="col-lg-2 col-md-2 col-xs-4">
-                    <div class="item" onclick="window.open('http://{{ $host }}')">
+                    <div class="item" onclick="window.open('{{ $protocol }}://{{ $host }}')">
                         <img data-name="{{ $container.Name }}" class="profile"/>
-                        <a class="link" href="http://{{ $host }}" target="_blank">{{ $container.Name }}</a>
+                        <a class="link" href="{{ $protocol }}://{{ $host }}" target="_blank">{{ $container.Name }}</a>
                     </div>
                 </div>
             {{ end }}

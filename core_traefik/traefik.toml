@@ -13,14 +13,17 @@ address = ":8080"
 [entryPoints.http]
 address = ":80"
 
+[entryPoints.http.auth.basic]
+users = ["test:$apr1$UtQgZpB9$TiczkXmm2.C2HGnt/bMKa."]
+
 #[entryPoints.http.redirect]
 #entryPoint = "https"
 
 [entryPoints.https]
 address = ":443"
 
-[entryPoints.https.auth.basic]
-users = ["test:$apr1$UtQgZpB9$TiczkXmm2.C2HGnt/bMKa."]
+#[entryPoints.https.auth.basic]
+#users = ["test:$apr1$UtQgZpB9$TiczkXmm2.C2HGnt/bMKa."]
 
 [entryPoints.https.tls]
 [[entryPoints.https.tls.certificates]]

@@ -1,22 +1,20 @@
-version: '2'
+version: '3'
 
 services:
   app:
-    image: "gogs/gogs"
-    container_name: "gogs"
-    links:
-      - "db"
+    image: gogs/gogs
+    container_name: gogs
     ports:
-      - "3000:3000"
-      - "10022:22"
+      - 3000:3000
+      - 10022:22
     volumes:
-      - "gogs:/data"
-    env_file: "app.env"
-
-  db:
-    image: "mysql"
-    container_name: "gogs-db"
-    env_file: "db.env"
+      - gogs:/data
+    labels:
+      - traefik.enable=true
+      - traefik.port=3000
+      - traefik.frontend.rule=Host:${traefik_url}
+      - traefik.frontend.entryPoints=${traefik_protocol:-http}
+      - traefik.home=true
 
 volumes:
   gogs:

@@ -1,7 +1,12 @@
-version: '2'
+version: '3'
 
 services:
   app:
-    image: "mattermost/mattermost-preview"
-    container_name: "mattermost"
-    env_file: "app.env"
+    image: mattermost/mattermost-preview
+    container_name: mattermost
+    labels:
+      - traefik.enable=true
+      - traefik.port=8065
+      - traefik.frontend.rule=Host:${traefik_url}
+      - traefik.frontend.entryPoints=${traefik_protocol:-http}
+      - traefik.home=true

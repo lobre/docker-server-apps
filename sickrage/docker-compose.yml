@@ -1,20 +1,25 @@
-version: '2'
+version: '3'
 
 services:
   app:
-    image: "linuxserver/sickrage"
-    container_name: "sickrage"
+    image: linuxserver/sickrage
+    container_name: sickrage
     ports:
-      - "8081:8081"
+      - 8081:8081
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "media:/downloads"
-      - "media:/tv"
-      - "config:/config"
-    env_file: app.env
+      - /etc/localtime:/etc/localtime:ro
+      - media:/downloads
+      - media:/tv
+      - config:/config
     environment:
-      - "PUID=1000"
-      - "PGID=1000"
+      - PUID=1000
+      - PGID=1000
+    labels:
+      - traefik.enable=true
+      - traefik.port=8081
+      - traefik.frontend.rule=Host:${traefik_url}
+      - traefik.frontend.entryPoints=${traefik_protocol:-http}
+      - traefik.home=true
 
 volumes:
   media:

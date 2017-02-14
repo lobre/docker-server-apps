@@ -1,12 +1,17 @@
-version: '2'
+version: '3'
 
 services:
   app:
-    image: "google/cadvisor"
-    container_name: "cadvisor"
+    image: google/cadvisor
+    container_name: cadvisor
     volumes:
-      - "/:/rootfs:ro"
-      - "/var/run:/var/run:rw"
-      - "/sys:/sys:ro"
-      - "/var/lib/docker/:/var/lib/docker:ro"
-    env_file: "app.env"
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    labels:
+      - traefik.enable=true
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:${traefik_url}
+      - traefik.frontend.entryPoints=${traefik_protocol:-http}
+      - traefik.home=true

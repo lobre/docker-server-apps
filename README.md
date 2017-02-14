@@ -22,7 +22,7 @@ Becareful, these folders should have permissions 755.
 
 ## Configuration
 
-Duplicate the three `*.env.sample` files from the apps directories by removing the `*.sample` and edit the configurations according to your needs.
+Use `core_envcreator.py` to generate secret `.env` file before starting apps.
 
 If a `README.md` file exists in the app folder, there might be more steps to do before starting the app.
 

@@ -1,19 +1,24 @@
-version: '2'
+version: '3'
 
 services:
   app:
-    image: "linuxserver/plex"
-    container_name: "plex"
+    image: linuxserver/plex
+    container_name: plex
     ports:
-      - "32400:32400"
+      - 32400:32400
     volumes:
-      - "media:/data"
-      - "config:/config"
-    env_file: "app.env"
+      - media:/data
+      - config:/config
     environment:
-      - "PUID=1000"
-      - "PGID=1000"
-      - "VERSION=latest"
+      - PUID=1000
+      - PGID=1000
+      - VERSION=latest
+    labels:
+      - traefik.enable=true
+      - traefik.port=32400
+      - traefik.frontend.rule=Host:${traefik_url}
+      - traefik.frontend.entryPoints=${traefik_protocol:-http}
+      - traefik.home=true
 
 volumes:
   media:

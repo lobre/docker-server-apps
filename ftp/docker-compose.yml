@@ -7,8 +7,8 @@ services:
     volumes:
       - media:/data/admin
     ports:
-      - 21:21
-      - 65000-65004:65000-65004
+      - "21:21"
+      - "65000-65004:65000-65004"
     environment:
       - PASV_MIN_PORT=65000
       - PASV_MAX_PORT=65004

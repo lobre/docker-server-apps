@@ -22,7 +22,8 @@ def prompt(variables):
     results = {}
     for variable, default_value in variables.items():
         user_value = input("{} [{}]: ".format(variable, default_value))
-        results[variable] = user_value if user_value else default_value
+        if user_value or default_value:
+            results[variable] = user_value if user_value else default_value
     return results
 
 def toString(variables):

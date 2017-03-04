@@ -5,7 +5,6 @@ services:
     image: gogs/gogs
     container_name: gogs
     ports:
-      - "3000:3000"
       - "10022:22"
     volumes:
       - gogs:/data

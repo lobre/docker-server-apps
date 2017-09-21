@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument( 'composefile', help='docker-compose.yml')
 args = parser.parse_args()
 
-PATTERN = '\$\{?(\w+)(?::?-(\w+))?\}?'
+PATTERN = '\$\{?(\w+)(?::?-([a-zA-Z0-9,]+))?\}?'
 
 def parse(compose_file):
     variables = {}

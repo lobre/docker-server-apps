@@ -6,6 +6,9 @@ services:
     container_name: home
     volumes:
       - web:/usr/share/nginx/html
+      - ./style.css:/usr/share/nginx/html/style.css
+      - ./favicon.ico:/usr/share/nginx/html/favicon.ico
+      - ./logo.png:/usr/share/nginx/html/logo.png
     labels:
       - traefik.enable=true
       - traefik.port=80
@@ -13,6 +16,9 @@ services:
       - traefik.frontend.entryPoints=${traefik_protocols:-http,https}
       - traefik.frontend.auth.basic=${traefik_auth}
       - traefik.home=false
+      - traefik.home.navbgcolor=#89a3ff
+      - traefik.home.navtextcolor=#000
+      - traefik.home.title=My Apps
 
   gen:
     image: jwilder/docker-gen

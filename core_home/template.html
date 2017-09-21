@@ -9,69 +9,52 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Server applications</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    {{ $title := or (first (keys (groupByLabel $ "traefik.home.title"))) "Applications" }}
+    <title>{{ $title }}</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 
+    {{/* Include custom style */}}
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    {{/* Inline style for navbar */}}
     <style>
-        *, *:before, *:after {
-            box-sizing: border-box;
+        {{/* Nav bar color */}}
+        {{ $bg_color := or (first (keys (groupByLabel $ "traefik.home.navbgcolor"))) "#222" }}
+        {{ $text_color := or (first (keys (groupByLabel $ "traefik.home.navtextcolor"))) "#fff" }}
+
+        .navbar {
+            background-color: {{ $bg_color }};
+            border: none;
         }
-        hr {
-            margin: 20px 35px;
+        .navbar-brand {
+            color: {{ $text_color }};
         }
-        body {
-            font-family: 'Open Sans';
-            padding-top: 70px;
+        .navbar-brand:hover {
+            color: {{ $text_color }};
         }
-        .item {
-            width: 100%;
-            text-align: center;
-            margin: 15px 0 15px 0;
-            padding: 5px 0;
-            border-radius: 5px;
-            opacity: 0.8;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
-        .item:hover {
-            box-shadow: 0 0 1px #777777 inset;
-            opacity: 1;
-            cursor: pointer;
-        }
-        .profile {
-            border-radius: 50%;
-            margin: 5px auto;
-            box-shadow: 5px 5px 15px -10px rgba(0,0,0,0.75);
-            display: table;
-            width: 65%;
-        }
-        .link {
-            text-transform: capitalize;
-            color: #555555;
-            white-space: nowrap;
-        }
-        a:hover, a:visited, a:link, a:active
-        {
-            text-decoration: none;
-            color: #555555;
-        }
-        .description {
-            color: #797979;
-            font-style: italic;
-            margin-top: 10px;
+        .navbar-brand > img {
+            height: 100%;
+            padding: 0 10px 0 0;
+            width: auto;
+            display: inline-block;
         }
     </style>
 
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <span class="navbar-brand">Server applications</span>
+                <span class="navbar-brand">
+                    <img src="logo.png">
+                    {{ $title }}
+                </span>
             </div>
         </div>
     </nav>
@@ -95,7 +78,14 @@
                     {{ $protocol := when (contains $container.Labels "traefik.frontend.entryPoints") (first (split (index $container.Labels "traefik.frontend.entryPoints") ",")) "http" }}
                     <div class="col-lg-2 col-md-2 col-xs-4">
                         <div class="item" onclick="window.open('{{ $protocol }}://{{ $host }}')">
-                            <img data-name="{{ $container.Name }}" class="profile"/>
+
+                            {{/* Get image if specified otherwise generate initials */}}
+                            {{ $image := index $container.Labels "traefik.home.image" }}
+                            <img data-name="{{ $container.Name }}" src="{{ if $image }}{{ $image }}{{ end }}" class="profile {{ if not $image}} initial {{ end }}"/>
+
+                            {{ if index $container.Labels "traefik.frontend.auth.basic" }}
+                                <span class="glyphicon glyphicon-lock"></span> 
+                            {{ end }}
                             <a class="link" href="{{ $protocol }}://{{ $host }}" target="_blank">{{ if (index $container.Labels "traefik.home.alias") }}{{ index $container.Labels "traefik.home.alias" }}{{ else }}{{ $container.Name }}{{ end }}</a>
                         </div>
                         {{/* Show description if provided */}}
@@ -127,7 +117,15 @@
                 {{ $protocol := when (contains $container.Labels "traefik.frontend.entryPoints") (first (split (index $container.Labels "traefik.frontend.entryPoints") ",")) "http" }}
                 <div class="col-lg-2 col-md-2 col-xs-4">
                     <div class="item" onclick="window.open('{{ $protocol }}://{{ $host }}')">
-                        <img data-name="{{ $container.Name }}" class="profile"/>
+
+                        
+                        {{/* Get image if specified otherwise generate initials */}}
+                        {{ $image := index $container.Labels "traefik.home.image" }}
+                        <img data-name="{{ $container.Name }}" src="{{ if $image }}{{ $image }}{{ end }}" class="profile {{ if not $image}} initial {{ end }}"/>
+                      
+                        {{ if index $container.Labels "traefik.frontend.auth.basic" }}
+                            <span class="glyphicon glyphicon-lock"></span> 
+                        {{ end }}
                         <a class="link" href="{{ $protocol }}://{{ $host }}" target="_blank">{{ if (index $container.Labels "traefik.home.alias") }}{{ index $container.Labels "traefik.home.alias" }}{{ else }}{{ $container.Name }}{{ end }}</a>
                     </div>
                     {{/* Show description if provided */}}
@@ -147,12 +145,16 @@
 
     <script>
         $( document ).ready(function() {
-            $('.profile').initial({
+            $('.profile.initial').initial({
                 charCount: 2,
                 fontSize: 35,
                 height: 80,
                 width: 80,
                 fontWeight: 500
+            });
+
+            $('img').error(function(){
+                $(this).remove();
             });
         });
     </script>

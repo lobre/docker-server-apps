@@ -9,9 +9,6 @@ address = ":8080"
 [entryPoints.http]
 address = ":80"
 
-[entryPoints.http.auth.basic]
-users = ["admin:$apr1$6DK7aAqB$vLvFYcLFxlTgFKwT1Un.01"]
-
 [entryPoints.https]
 address = ":443"
 

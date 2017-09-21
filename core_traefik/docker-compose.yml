@@ -18,3 +18,4 @@ services:
       - traefik.frontend.entryPoints=${traefik_protocols:-http,https}
       - traefik.frontend.auth.basic=${traefik_auth}
       - traefik.home=true
+      - traefik.home.description="This is cool for proxy"

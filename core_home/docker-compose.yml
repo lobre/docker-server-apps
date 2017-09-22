@@ -2,13 +2,10 @@ version: '3'
 
 services:
   nginx:
-    image: nginx
+    image: lobre/traefik-home
     container_name: home
     volumes:
-      - web:/usr/share/nginx/html
-      - ./style.css:/usr/share/nginx/html/style.css
-      - ./favicon.ico:/usr/share/nginx/html/favicon.ico
-      - ./logo.png:/usr/share/nginx/html/logo.png
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     labels:
       - traefik.enable=true
       - traefik.port=80
@@ -19,16 +16,3 @@ services:
       - traefik.home.navbgcolor=#89a3ff
       - traefik.home.navtextcolor=#000
       - traefik.home.title=My Apps
-
-  gen:
-    image: jwilder/docker-gen
-    container_name: home-gen
-    command: -watch -only-exposed /etc/docker-gen/templates/template.html /web/index.html
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./template.html:/etc/docker-gen/templates/template.html
-      - web:/web
-
-volumes:
-  web:
-    driver: local

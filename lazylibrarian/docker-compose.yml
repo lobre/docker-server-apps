@@ -2,23 +2,24 @@ version: '3'
 
 services:
   app:
-    image: linuxserver/deluge
-    container_name: deluge
+    image: linuxserver/lazylibrarian
+    container_name: lazylibrarian
     ports:
-      - 8112:8112
-      - 58846:58846
+      - 5299:5299
     volumes:
       - media:/downloads
+      - media:/books
       - config:/config
     environment:
       - PUID=1000
       - PGID=1000
     labels:
       - traefik.enable=true
-      - traefik.port=8112
+      - traefik.port=5299
       - traefik.frontend.rule=Host:${traefik_url}
       - traefik.home=true
-      - traefik.home.image=logos/deluge.png
+      - traefik.home.alias=LazyLibrarian
+      - traefik.home.image=logos/lazylibrarian.png
       - traefik.home.category=Downloads
 
 volumes:

@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  drone-server:
+    image: drone/drone:0.7
+    container_name: drone-server
+    environment:
+      - DRONE_OPEN=true
+      - DRONE_ADMIN=admin
+      - DRONE_HOST=https://${traefik_url}
+      - DRONE_GITHUB=true
+      - DRONE_GITHUB_CLIENT=${github_client}
+      - DRONE_GITHUB_SECRET=${github_secret}
+      - DRONE_SECRET=${drone_secret}
+    volumes:
+      - sqlite:/var/lib/drone/
+    labels:
+      - traefik.enable=true
+      - traefik.port=8000
+      - traefik.frontend.rule=Host:${traefik_url}
+      - traefik.frontend.auth.basic=${traefik_auth}
+      - traefik.home=true
+      - traefik.home.image=logos/drone.png
+      - traefik.home.category=Dev
+
+  drone-agent:
+    image: drone/drone:0.7
+    container_name: drone-agent
+    command: agent
+    depends_on:
+      - drone-server
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_SERVER=ws://drone-server:8000/ws/broker
+      - DRONE_SECRET=${drone_secret}
+
+volumes:
+  sqlite:
+    driver: "local"

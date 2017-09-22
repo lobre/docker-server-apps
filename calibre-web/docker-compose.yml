@@ -2,27 +2,26 @@ version: '3'
 
 services:
   app:
-    image: linuxserver/deluge
-    container_name: deluge
+    image: linuxserver/calibre-web
+    container_name: calibre-web
     ports:
-      - 8112:8112
-      - 58846:58846
+      - 8083:8083
     volumes:
-      - media:/downloads
+      - books:/books
       - config:/config
     environment:
       - PUID=1000
       - PGID=1000
     labels:
       - traefik.enable=true
-      - traefik.port=8112
+      - traefik.port=8083
       - traefik.frontend.rule=Host:${traefik_url}
       - traefik.home=true
-      - traefik.home.image=logos/deluge.png
-      - traefik.home.category=Downloads
+      - traefik.home.image=logos/calibre.png
+      - traefik.home.category=Books
 
 volumes:
-  media:
-    external: true
   config:
+    driver: "local"
+  books:
     driver: "local"

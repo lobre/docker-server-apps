@@ -6,13 +6,12 @@ services:
     container_name: home
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./logos:/usr/share/nginx/html/logos
     labels:
       - traefik.enable=true
       - traefik.port=80
       - traefik.frontend.rule=Host:${traefik_url}
-      - traefik.frontend.entryPoints=${traefik_protocols:-http,https}
-      - traefik.frontend.auth.basic=${traefik_auth}
       - traefik.home=false
       - traefik.home.navbgcolor=#89a3ff
       - traefik.home.navtextcolor=#000
-      - traefik.home.title=My Apps
+      - traefik.home.title=Home

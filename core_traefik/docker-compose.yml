@@ -15,7 +15,7 @@ services:
       - traefik.enable=true
       - traefik.port=8080
       - traefik.frontend.rule=Host:${traefik_url}
-      - traefik.frontend.entryPoints=${traefik_protocols:-http,https}
       - traefik.frontend.auth.basic=${traefik_auth}
       - traefik.home=true
-      - traefik.home.image=https://docs.traefik.io/img/traefik.logo.png
+      - traefik.home.image=logos/traefik.png
+      - traefik.home.category=Core

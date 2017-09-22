@@ -10,5 +10,6 @@ services:
       - traefik.enable=true
       - traefik.port=9000
       - traefik.frontend.rule=Host:${traefik_url}
-      - traefik.frontend.entryPoints=${traefik_protocol:-https}
       - traefik.home=true
+      - traefik.home.image=logos/portainer.png
+      - traefik.home.category=Core

@@ -7,14 +7,15 @@ services:
     ports:
       - "10022:22"
     volumes:
-      - gogs:/data
+      - data:/data
     labels:
       - traefik.enable=true
       - traefik.port=3000
       - traefik.frontend.rule=Host:${traefik_url}
-      - traefik.frontend.entryPoints=${traefik_protocol:-https}
       - traefik.home=true
+      - traefik.home.image=logos/gogs.png
+      - traefik.home.category=Dev
 
 volumes:
-  gogs:
+  data:
     driver: "local"

@@ -1,4 +1,4 @@
-defaultEntryPoints = ["http", "https"]
+defaultEntryPoints = ["http", "https", "ws", "wss"]
 InsecureSkipVerify = true
 
 [web]

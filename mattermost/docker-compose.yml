@@ -4,6 +4,8 @@ services:
   app:
     image: mattermost/mattermost-preview
     container_name: mattermost
+    ports:
+      - 8065:8065
     labels:
       - traefik.enable=true
       - traefik.port=8065

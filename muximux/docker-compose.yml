@@ -13,7 +13,6 @@ services:
       - traefik.enable=true
       - traefik.port=80
       - traefik.frontend.rule=Host:${traefik_url}
-      - traefik.frontend.auth.basic=${traefik_auth}
       - traefik.home=true
       - traefik.home.category=Tools
 

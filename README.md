@@ -13,6 +13,7 @@ Then subfolders can be created in this volume like:
  - Downloads
  - Movies
  - Series
+ - Books
 
 Becareful, these folders should have permissions 755.
 

@@ -7,7 +7,7 @@ services:
     ports:
       - 8083:8083
     volumes:
-      - books:/books
+      - media:/books
       - config:/config
     environment:
       - PUID=1000
@@ -23,5 +23,5 @@ services:
 volumes:
   config:
     driver: "local"
-  books:
-    driver: "local"
+  media:
+    external: true

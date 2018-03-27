@@ -4,6 +4,7 @@ services:
   app:
     image: linuxserver/ombi
     container_name: ombi
+    restart: always
     ports:
       - 3579:3579
     volumes:

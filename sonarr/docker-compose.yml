@@ -4,6 +4,7 @@ services:
   app:
     image: linuxserver/sonarr
     container_name: sonarr
+    restart: always
     ports:
       - 8989:8989
     volumes:

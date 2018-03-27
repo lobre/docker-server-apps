@@ -4,6 +4,7 @@ services:
   app:
     image: clue/h5ai
     container_name: browser
+    restart: always
     volumes:
       - media:/var/www
     labels:

@@ -4,6 +4,7 @@ services:
   app:
     image: linuxserver/muximux
     container_name: muximux
+    restart: always
     volumes:
       - config:/config
     environment:

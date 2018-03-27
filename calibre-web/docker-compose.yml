@@ -4,6 +4,7 @@ services:
   app:
     image: linuxserver/calibre-web
     container_name: calibre-web
+    restart: always
     ports:
       - 8083:8083
     volumes:

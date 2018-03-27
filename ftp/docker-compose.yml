@@ -4,6 +4,7 @@ services:
   app:
     image: mcreations/ftp
     container_name: ftp
+    restart: always
     volumes:
       - media:/data/admin
     ports:

@@ -4,6 +4,7 @@ services:
   server:
     image: jpetazzo/dockvpn
     container_name: vpn
+    restart: always
     privileged: true
     volumes:
       - openvpn:/etc/openvpn
@@ -16,6 +17,7 @@ services:
   config:
     image: jpetazzo/dockvpn
     container_name: vpn-config
+    restart: always
     command: serveconfig
     volumes:
       - openvpn:/etc/openvpn

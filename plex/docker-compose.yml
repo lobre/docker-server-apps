@@ -4,6 +4,7 @@ services:
   app:
     image: linuxserver/plex
     container_name: plex
+    restart: always
     ports:
       - 32400:32400
     volumes:

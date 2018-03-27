@@ -4,6 +4,7 @@ services:
   app:
     image: sspreitzer/shellinabox
     container_name: terminal
+    restart: always
     environment:
       - SIAB_SUDO=true
       - SIAB_USER=${user}

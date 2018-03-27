@@ -4,6 +4,7 @@ services:
   app:
     image: linuxserver/deluge
     container_name: deluge
+    restart: always
     ports:
       - 8112:8112
       - 58846:58846

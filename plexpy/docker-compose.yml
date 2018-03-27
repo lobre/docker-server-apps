@@ -4,6 +4,7 @@ services:
   app:
     image: linuxserver/plexpy
     container_name: plexpy
+    restart: always
     ports:
       - 8181:8181
     volumes:

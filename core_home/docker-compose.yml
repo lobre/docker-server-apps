@@ -4,6 +4,7 @@ services:
   nginx:
     image: lobre/traefik-home
     container_name: home
+    restart: always
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./logos:/usr/share/nginx/html/logos

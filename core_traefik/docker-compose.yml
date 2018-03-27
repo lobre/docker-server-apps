@@ -2,7 +2,7 @@ version: '3'
 
 services:
   proxy:
-    image: traefik:raclette-alpine
+    image: traefik:alpine
     container_name: traefik
     restart: always
     command: --docker.domain=${traefik_domain} --acme.email=${traefik_email} --logLevel=DEBUG

@@ -18,7 +18,7 @@ address = ":443"
 [entryPoints.https.tls]
 
 [acme]
-storage = "acme.json"
+storage = "/etc/traefik/acme/acme.json"
 entryPoint = "https"
 onDemand = false
 OnHostRule = true

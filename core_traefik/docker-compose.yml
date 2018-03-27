@@ -12,6 +12,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.toml:/traefik.toml
+      - acme:/etc/traefik/acme
     labels:
       - traefik.enable=true
       - traefik.port=8080
@@ -20,3 +21,7 @@ services:
       - traefik.home=true
       - traefik.home.image=logos/traefik.png
       - traefik.home.category=Core
+
+volumes:
+  acme:
+    driver: "local"

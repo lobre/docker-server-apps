@@ -2,25 +2,23 @@ version: '3'
 
 services:
   app:
-    image: jlesage/jdownloader-2
-    container_name: jdownloader
+    image: nicolargo/glances
+    container_name: glances
     restart: always
+    pid: host
     volumes:
-      - media:/output
-      - config:/config
+      - ./glances.conf:/glances/conf/glances.conf
+      - media:/media
     environment:
-      - USER_ID=1000
-      - GROUP_ID=1000
+      - GLANCES_OPT=-w --disable-plugin diskio,network,sensors
     labels:
       - traefik.enable=true
-      - traefik.port=5800
+      - traefik.port=61208
       - traefik.frontend.rule=Host:${traefik_url}
       - traefik.frontend.auth.basic=${traefik_auth}
       - traefik.home=true
-      - traefik.home.category=Downloads
+      - traefik.home.category=Tools
 
 volumes:
   media:
     external: true
-  config:
-    driver: "local"

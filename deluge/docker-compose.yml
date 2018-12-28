@@ -31,6 +31,7 @@ services:
       - traefik.enable=true
       - traefik.port=8112
       - traefik.frontend.rule=Host:${url}
+      - traefik.docker.network=core_proxy
       - ghosts.hosts=${url}
       - ghosts.proto=https
       - ghosts.logo=static/logos/deluge.png

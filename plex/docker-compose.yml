@@ -31,6 +31,7 @@ services:
       - traefik.enable=true
       - traefik.port=32400
       - traefik.frontend.rule=Host:${url}
+      - traefik.docker.network=core_proxy
       - ghosts.host=${url}
       - ghosts.proto=https
       - ghosts.logo=static/logos/plex.png

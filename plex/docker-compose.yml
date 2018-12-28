@@ -1,5 +1,15 @@
 version: '3'
 
+volumes:
+  config: {}
+  media:
+    external: true
+
+networks:
+  default: {}
+  core_proxy:
+    external: true
+
 services:
   app:
     image: linuxserver/plex
@@ -14,6 +24,9 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=latest
+    networks:
+      - default
+      - core_proxy
     labels:
       - traefik.enable=true
       - traefik.port=32400
@@ -23,8 +36,3 @@ services:
       - ghosts.logo=static/logos/plex.png
       - ghosts.category=media
 
-volumes:
-  media:
-    external: true
-  config:
-    driver: "local"

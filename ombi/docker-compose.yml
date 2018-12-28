@@ -1,5 +1,13 @@
 version: '3'
 
+volumes:
+  config: {}
+
+networks:
+  default: {}
+  core_proxy:
+    external: true
+
 services:
   app:
     image: linuxserver/ombi
@@ -13,6 +21,9 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+    networks:
+      - default
+      - core_proxy
     labels:
       - traefik.enable=true
       - traefik.port=3579
@@ -22,6 +33,3 @@ services:
       - ghosts.logo=static/logos/ombi.png
       - ghosts.category=media
 
-volumes:
-  config:
-    driver: "local"

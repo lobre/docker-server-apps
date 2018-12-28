@@ -1,5 +1,11 @@
 version: '3'
 
+volumes:
+  acme: {}
+
+networks:
+  proxy: {}
+
 services:
   traefik:
     image: traefik
@@ -13,6 +19,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.toml:/traefik.toml
       - acme:/etc/traefik/acme
+    networks:
+      - proxy
     labels:
       - traefik.enable=true
       - traefik.port=8080
@@ -27,10 +35,12 @@ services:
     image: lobre/ghosts
     container_name: ghosts
     restart: always
-    command: -nohosts -proxymode -proxycontainername=traefik -proxynetautoconnect
+    command: -nohosts -proxymode
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./logos/:/app/static/logos/
+    networks:
+      - proxy
     labels:
       - traefik.enable=true
       - traefik.port=8080
@@ -47,6 +57,8 @@ services:
     command: -H unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - proxy
     labels:
       - traefik.enable=true
       - traefik.port=9000
@@ -55,7 +67,3 @@ services:
       - ghosts.proto=https
       - ghosts.category=core
       - ghosts.logo=static/portainer.png
-
-volumes:
-  acme:
-    driver: "local"

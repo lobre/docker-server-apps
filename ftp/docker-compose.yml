@@ -1,5 +1,12 @@
 version: '3'
 
+volumes:
+  media:
+    external: true
+
+networks:
+  default: {}
+
 services:
   app:
     image: mcreations/ftp
@@ -10,6 +17,8 @@ services:
     ports:
       - "21:21"
       - "65000-65004:65000-65004"
+    networks:
+      - default
     environment:
       - PASV_MIN_PORT=65000
       - PASV_MAX_PORT=65004
@@ -17,6 +26,3 @@ services:
       - FTP_PASS=${ftp_password}
       - HOST=${ftp_host}
 
-volumes:
-  media:
-    external: true

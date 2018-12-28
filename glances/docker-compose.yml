@@ -1,5 +1,14 @@
 version: '3'
 
+volumes:
+  media:
+    external: true
+
+networks:
+  default: {}
+  core_proxy:
+    external: true
+
 services:
   app:
     image: nicolargo/glances
@@ -11,6 +20,9 @@ services:
       - media:/media
     environment:
       - GLANCES_OPT=-w --disable-plugin diskio,network,sensors
+    networks:
+      - default
+      - core_proxy
     labels:
       - traefik.enable=true
       - traefik.port=61208
@@ -21,6 +33,3 @@ services:
       - ghosts.auth=true
       - ghosts.category=tools
 
-volumes:
-  media:
-    external: true

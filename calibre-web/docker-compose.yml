@@ -1,5 +1,15 @@
 version: '3'
 
+volumes:
+  config: {}
+  media:
+    external: true
+
+networks:
+  default: {}
+  core_proxy:
+    external: true
+
 services:
   app:
     image: linuxserver/calibre-web
@@ -14,6 +24,9 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+    networks:
+      - default
+      - core_proxy
     labels:
       - traefik.enable=true
       - traefik.port=8083
@@ -23,8 +36,3 @@ services:
       - ghosts.logo=static/logos/calibre.png
       - ghosts.category=books
 
-volumes:
-  config:
-    driver: "local"
-  media:
-    external: true

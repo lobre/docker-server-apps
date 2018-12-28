@@ -1,5 +1,14 @@
 version: '3'
 
+volumes:
+  media:
+    external: true
+
+networks:
+  default: {}
+  core_proxy:
+    external: true
+
 services:
   app:
     image: filebrowser/filebrowser
@@ -10,6 +19,9 @@ services:
     volumes:
       - media:/data
       - ./database.db:/database.db
+    networks:
+      - default
+      - core_proxy
     labels:
       - traefik.enable=true
       - traefik.port=8888
@@ -18,6 +30,3 @@ services:
       - ghosts.proto=https
       - ghosts.category=tools
 
-volumes:
-  media:
-    external: true

@@ -1,5 +1,13 @@
 version: '3'
 
+volumes:
+  openvpn: {}
+
+networks:
+  default: {}
+  core_proxy:
+    external: true
+
 services:
   server:
     image: jpetazzo/dockvpn
@@ -13,6 +21,8 @@ services:
     ports:
       - 1194:1194/udp
       - 8080:443/tcp
+    networks:
+      - default
 
   config:
     image: jpetazzo/dockvpn
@@ -23,6 +33,9 @@ services:
       - openvpn:/etc/openvpn
       - ./run:/usr/local/sbin/run
       - ./serveconfig:/usr/local/sbin/serveconfig
+    networks:
+      - default
+      - core_proxy
     labels:
       - traefik.enable=true
       - traefik.port=8080
@@ -36,6 +49,3 @@ services:
       - ghosts.logo=static/logos/vpn.png
       - ghosts.category=tools
 
-volumes:
-  openvpn:
-    driver: "local"

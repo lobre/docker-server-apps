@@ -1,5 +1,10 @@
 version: '3'
 
+networks:
+  default: {}
+  core_proxy:
+    external: true
+
 services:
   app:
     image: sspreitzer/shellinabox
@@ -9,6 +14,9 @@ services:
       - SIAB_SUDO=true
       - SIAB_USER=${user}
       - SIAB_PASSWORD=${password}
+    networks:
+      - default
+      - core_proxy
     labels:
       - traefik.enable=true
       - traefik.port=4200

@@ -1,5 +1,15 @@
 version: '3'
 
+volumes:
+  config: {}
+  media:
+    external: true
+
+networks:
+  default: {}
+  core_proxy:
+    external: true
+
 services:
   app:
     image: jlesage/jdownloader-2
@@ -11,6 +21,9 @@ services:
     environment:
       - USER_ID=1000
       - GROUP_ID=1000
+    networks:
+      - default
+      - core_proxy
     labels:
       - traefik.enable=true
       - traefik.port=5800
@@ -21,8 +34,3 @@ services:
       - ghosts.auth=true
       - ghosts.category=downloads
 
-volumes:
-  media:
-    external: true
-  config:
-    driver: "local"

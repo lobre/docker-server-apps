@@ -66,4 +66,4 @@ services:
       - ghosts.host=${portainer_url}
       - ghosts.proto=https
       - ghosts.category=core
-      - ghosts.logo=static/portainer.png
+      - ghosts.logo=static/logos/portainer.png

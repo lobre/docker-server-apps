@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  app:
+    image: filebrowser/filebrowser
+    container_name: filebrowser
+    restart: always
+    command: --port 8888 --database /database.db --defaults.scope /data
+    user: 1000:1000
+    volumes:
+      - media:/data
+      - ./database.db:/database.db
+    labels:
+      - traefik.enable=true
+      - traefik.port=8888
+      - traefik.frontend.rule=Host:${traefik_url}
+      - traefik.home=true
+      - traefik.home.category=Tools
+
+volumes:
+  media:
+    external: true

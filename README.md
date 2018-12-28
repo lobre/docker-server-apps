@@ -23,7 +23,7 @@ Becareful, these folders should have permissions 755.
 
 ## Configuration
 
-Use `core_envcreator.py` to generate secret `.env` file before starting apps.
+Use `core_env.py` to generate secret `.env` file before starting apps.
 
 If a `README.md` file exists in the app folder, there might be more steps to do before starting the app.
 

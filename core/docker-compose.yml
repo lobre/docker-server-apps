@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik
+    command: --docker.domain=${traefik_domain} --acme.email=${traefik_email} --logLevel=DEBUG
+    container_name: traefik
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/traefik.toml
+      - acme:/etc/traefik/acme
+    labels:
+      - traefik.enable=true
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:${traefik_url}
+      - traefik.frontend.auth.basic=${traefik_auth}
+      - ghosts.host=${traefik_url}
+      - ghosts.proto=https
+      - ghosts.logo=static/logos/traefik.png
+      - ghosts.category=core
+
+  ghosts:
+    image: lobre/ghosts
+    container_name: ghosts
+    restart: always
+    command: -nohosts -proxymode -proxycontainername=traefik -proxynetautoconnect
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./logos/:/app/static/logos/
+    labels:
+      - traefik.enable=true
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:${ghosts_url}
+      - ghosts.host=${ghosts_url}
+      - ghosts.noweb=true
+    depends_on:
+      - traefik
+
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    restart: always
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - traefik.enable=true
+      - traefik.port=9000
+      - traefik.frontend.rule=Host:${portainer_url}
+      - ghosts.host=${portainer_url}
+      - ghosts.proto=https
+      - ghosts.category=core
+      - ghosts.logo=static/portainer.png
+
+volumes:
+  acme:
+    driver: "local"

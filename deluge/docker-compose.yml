@@ -17,10 +17,11 @@ services:
     labels:
       - traefik.enable=true
       - traefik.port=8112
-      - traefik.frontend.rule=Host:${traefik_url}
-      - traefik.home=true
-      - traefik.home.image=logos/deluge.png
-      - traefik.home.category=Downloads
+      - traefik.frontend.rule=Host:${url}
+      - ghosts.hosts=${url}
+      - ghosts.proto=https
+      - ghosts.logo=static/logos/deluge.png
+      - ghosts.category=downloads
 
 volumes:
   media:

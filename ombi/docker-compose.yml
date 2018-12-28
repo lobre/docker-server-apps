@@ -16,11 +16,11 @@ services:
     labels:
       - traefik.enable=true
       - traefik.port=3579
-      - traefik.frontend.rule=Host:${traefik_url}
-      - traefik.home=true
-      - traefik.home.alias=Requests
-      - traefik.home.image=logos/ombi.png
-      - traefik.home.category=Media
+      - traefik.frontend.rule=Host:${url}
+      - ghosts.host=${url}
+      - ghosts.proto=https
+      - ghosts.logo=static/logos/ombi.png
+      - ghosts.category=media
 
 volumes:
   config:

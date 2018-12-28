@@ -13,7 +13,8 @@ services:
       - traefik.enable=true
       - traefik.port=4200
       - traefik.protocol=https
-      - traefik.frontend.rule=Host:${traefik_url}
-      - traefik.home=true
-      - traefik.home.image=logos/terminal.png
-      - traefik.home.category=Dev
+      - traefik.frontend.rule=Host:${url}
+      - ghosts.host=${url}
+      - ghosts.proto=https
+      - ghosts.logo=static/logos/terminal.png
+      - ghosts.category=dev

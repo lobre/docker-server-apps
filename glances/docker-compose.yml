@@ -14,10 +14,12 @@ services:
     labels:
       - traefik.enable=true
       - traefik.port=61208
-      - traefik.frontend.rule=Host:${traefik_url}
-      - traefik.frontend.auth.basic=${traefik_auth}
-      - traefik.home=true
-      - traefik.home.category=Tools
+      - traefik.frontend.rule=Host:${url}
+      - traefik.frontend.auth.basic=${auth}
+      - ghosts.host=${url}
+      - ghosts.proto=https
+      - ghosts.auth=true
+      - ghosts.category=tools
 
 volumes:
   media:

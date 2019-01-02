@@ -36,7 +36,7 @@ services:
     image: lobre/ghosts
     container_name: ghosts
     restart: always
-    command: -nohosts -proxymode
+    command: -nohosts -proxymode -webnavbgcolor "#ffffff" -webnavtextcolor "#50596c"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./logos/:/app/static/logos/

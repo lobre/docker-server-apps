@@ -35,5 +35,5 @@ services:
       - ghosts.host=${url}
       - ghosts.proto=https
       - ghosts.logo=static/logos/calibre.png
-      - ghosts.category=books
+      - ghosts.category=media
 

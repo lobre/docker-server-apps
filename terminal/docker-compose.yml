@@ -26,4 +26,4 @@ services:
       - ghosts.host=${url}
       - ghosts.proto=https
       - ghosts.logo=static/logos/terminal.png
-      - ghosts.category=dev
+      - ghosts.category=tools

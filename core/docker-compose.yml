@@ -29,6 +29,7 @@ services:
       - traefik.docker.network=core_proxy
       - ghosts.host=${traefik_url}
       - ghosts.proto=https
+      - ghosts.auth=true
       - ghosts.logo=static/logos/traefik.png
       - ghosts.category=core
 

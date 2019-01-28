@@ -8,7 +8,7 @@ networks:
 services:
   app:
     image: starbix/synclounge
-    container_name: plex
+    container_name: synclounge
     restart: always
     ports:
       - 8089:8089

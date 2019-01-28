@@ -7,11 +7,9 @@ networks:
 
 services:
   app:
-    image: starbix/synclounge
+    image: starbix/synclounge:nginx
     container_name: synclounge
     restart: always
-    ports:
-      - 8089:8089
     environment:
       - DOMAIN=${url}
     networks:
@@ -19,10 +17,11 @@ services:
       - core_proxy
     labels:
       - traefik.enable=true
-      - traefik.port=8088
+      - traefik.port=80
       - traefik.frontend.rule=Host:${url}
       - traefik.docker.network=core_proxy
       - ghosts.host=${url}
+      - ghosts.path=/slweb
       - ghosts.proto=https
       - ghosts.logo=static/logos/synclounge.png
       - ghosts.category=media

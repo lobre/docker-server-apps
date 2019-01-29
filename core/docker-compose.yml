@@ -26,6 +26,7 @@ services:
       - traefik.port=8080
       - traefik.frontend.rule=Host:${traefik_url}
       - traefik.frontend.auth.basic=${traefik_auth}
+      - traefik.frontend.redirect.entryPoint=https
       - traefik.docker.network=core_proxy
       - ghosts.host=${traefik_url}
       - ghosts.proto=https
@@ -47,6 +48,7 @@ services:
       - traefik.enable=true
       - traefik.port=8080
       - traefik.frontend.rule=Host:${ghosts_url}
+      - traefik.frontend.redirect.entryPoint=https
       - traefik.docker.network=core_proxy
       - ghosts.host=${ghosts_url}
       - ghosts.noweb=true
@@ -66,6 +68,7 @@ services:
       - traefik.enable=true
       - traefik.port=9000
       - traefik.frontend.rule=Host:${portainer_url}
+      - traefik.frontend.redirect.entryPoint=https
       - traefik.docker.network=core_proxy
       - ghosts.host=${portainer_url}
       - ghosts.proto=https

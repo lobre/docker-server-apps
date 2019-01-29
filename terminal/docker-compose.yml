@@ -22,6 +22,7 @@ services:
       - traefik.port=4200
       - traefik.protocol=https
       - traefik.frontend.rule=Host:${url}
+      - traefik.frontend.redirect.entryPoint=https
       - traefik.docker.network=core_proxy
       - ghosts.host=${url}
       - ghosts.proto=https

@@ -9,9 +9,6 @@ address = ":8080"
 [entryPoints.http]
 address = ":80"
 
-[entryPoints.http.redirect]
-entryPoint = "https"
-
 [entryPoints.https]
 address = ":443"
 

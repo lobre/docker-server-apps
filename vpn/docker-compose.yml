@@ -42,6 +42,7 @@ services:
       - traefik.protocol=https
       - traefik.frontend.rule=Host:${url}
       - traefik.frontend.auth.basic=${auth}
+      - traefik.frontend.redirect.entryPoint=https
       - traefik.docker.network=core_proxy
       - ghosts.host=${url}
       - ghosts.proto=https

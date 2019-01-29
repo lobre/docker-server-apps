@@ -17,8 +17,6 @@ services:
       - core_proxy
     labels:
       - traefik.enable=true
-      - traefik.frontend.entryPoints=http,ws,wss
-      - traefik.frontend.redirect.entryPoint=false
       - traefik.client.port=8088
       - traefik.server.port=8089
       - traefik.client.frontend.rule=Host:${client_url}

@@ -11,18 +11,21 @@ services:
     container_name: synclounge
     restart: always
     environment:
-      - DOMAIN=${client_url}
+      - DOMAIN=${url}
+      - autoJoin=true
+      - autoJoinServer=http://${url}/slserver
     networks:
       - default
       - core_proxy
     labels:
       - traefik.enable=true
+      - traefik.frontend.entryPoints=http,ws,wss
       - traefik.client.port=8088
       - traefik.server.port=8089
-      - traefik.client.frontend.rule=Host:${client_url}
-      - traefik.server.frontend.rule=Host:${server_url}
+      - traefik.client.frontend.rule=Host:${url}
+      - traefik.server.frontend.rule=Host:${url};PathPrefix:/slserver
       - traefik.docker.network=core_proxy
-      - ghosts.host=${client_url}
+      - ghosts.host=${url}
       - ghosts.proto=http
       - ghosts.logo=static/logos/synclounge.png
       - ghosts.category=media

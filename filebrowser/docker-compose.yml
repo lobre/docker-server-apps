@@ -1,7 +1,6 @@
 version: '3'
 
 volumes:
-  db: {}
   media:
     external: true
 
@@ -17,8 +16,7 @@ services:
     restart: always
     user: 1000:1000
     volumes:
-      - media:/data
-      - db:/db
+      - media:/srv/data
       - ./filebrowser.json:/.filebrowser.json
     networks:
       - default

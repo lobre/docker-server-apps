@@ -14,11 +14,11 @@ services:
     image: filebrowser/filebrowser
     container_name: filebrowser
     restart: always
-    command: --port 8888 --database /database.db --defaults.scope /data
     user: 1000:1000
     volumes:
       - media:/data
       - ./database.db:/database.db
+      - ./filebrowser.json:/.filebrowser.json
     networks:
       - default
       - core_proxy

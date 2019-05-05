@@ -16,6 +16,7 @@ services:
     restart: always
     volumes:
       - lab:/home/dev/Lab
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - default
       - core_proxy

@@ -21,6 +21,10 @@ Becareful, these folders should have permissions 755.
 
     docker run --rm -v media:/dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /dbdata
 
+### Clean space
+
+    docker run --rm -ti --name dotfiles -e TERM=$TERM -v media:/media lobre/dotfiles -c "ncdu /media"
+
 ## Configuration
 
 Use `core_env.py` to generate secret `.env` file before starting apps.

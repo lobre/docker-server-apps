@@ -1,8 +1,5 @@
 version: '3'
 
-volumes:
-  lab: {}
-
 networks:
   default: {}
   core_proxy:
@@ -15,7 +12,7 @@ services:
     container_name: vscode
     restart: always
     volumes:
-      - lab:/home/dev/Lab
+      - $HOME/Lab:/home/dev/Lab
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - default

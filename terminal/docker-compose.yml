@@ -11,9 +11,7 @@ services:
     container_name: terminal
     restart: always
     environment:
-      - SIAB_SUDO=true
-      - SIAB_USER=${user}
-      - SIAB_PASSWORD=${password}
+      - SIAB_SERVICE=/:SSH:${host}
     networks:
       - default
       - core_proxy

@@ -13,7 +13,8 @@ services:
     container_name: ftp
     restart: always
     volumes:
-      - media:/data/admin
+      - $HOME:/data/admin/local
+      - media:/data/admin/media
     ports:
       - "21:21"
       - "65000-65004:65000-65004"

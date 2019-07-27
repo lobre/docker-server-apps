@@ -16,7 +16,8 @@ services:
     restart: always
     user: 1000:1000
     volumes:
-      - media:/srv
+      - $HOME:/srv/local
+      - media:/srv/media
       - ./database.db:/etc/database.db
       - ./filebrowser.json:/.filebrowser.json
     networks:

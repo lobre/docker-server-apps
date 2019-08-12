@@ -18,7 +18,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.port=8182
-      - traefik.protocol=https
       - traefik.frontend.rule=Host:${url}
       - traefik.frontend.redirect.entryPoint=https
       - traefik.docker.network=core_proxy

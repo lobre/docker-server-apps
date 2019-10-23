@@ -8,7 +8,7 @@ networks:
 
 services:
   traefik:
-      image: traefik:maroilles-alpine
+    image: traefik:maroilles-alpine
     command: --docker.domain=${traefik_domain} --acme.email=${traefik_email} --logLevel=DEBUG
     container_name: traefik
     restart: always
